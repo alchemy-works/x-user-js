@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name                zhihu_simplify
 // @description         zhihu simplify
-// @version             0.0.1
+// @version             0.0.2
 // @namespace           https://github.com/alchemy-works
 // @author              Alchemy Works
 // @include             /^https:\/\/(www)\.zhihu\.com\/.*$/
@@ -11,7 +11,25 @@
 // @grant               none
 // ==/UserScript==
 
-; (function () {
+function injectCSS(cssText) {
+    const style = document.createElement('style')
+    style.innerHTML = cssText;
+    document.head.appendChild(style);
+}
+
+const cssText = `
+
+.GlobalSideBar {
+    display: none !important;
+}
+
+.Topstory-mainColumn {
+    width: 100% !important;
+    margin-right: unset !important;
+}
+`
+
+;(function () {
     'use strict'
-    console.log('zhihu_simplify')
+    injectCSS(cssText)
 })();
