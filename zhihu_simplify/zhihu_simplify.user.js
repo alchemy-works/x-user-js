@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name                zhihu_simplify
 // @description         zhihu simplify
-// @version             0.0.3
+// @version             0.0.4
 // @namespace           https://github.com/alchemy-works
 // @author              Alchemy Works
 // @include             /^https:\/\/(www)\.zhihu\.com\/.*$/
@@ -25,7 +25,8 @@ const cssText = `
 
 .Topstory-mainColumn {
     width: 100% !important;
-    margin-right: unset !important;
+    margin-right: 0 !important;
+    transition: width 250ms ease !important;
 }
 
 .Question-sideColumn {
@@ -34,6 +35,7 @@ const cssText = `
 
 .Question-mainColumn {
     width: 100% !important;
+    transition: width 250ms ease !important;
 }
 `
 
