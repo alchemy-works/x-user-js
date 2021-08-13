@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name                zhihu_simplify
 // @description         zhihu simplify
-// @version             0.0.4
+// @version             0.0.5
 // @namespace           https://github.com/alchemy-works
 // @author              Alchemy Works
 // @include             /^https:\/\/(www)\.zhihu\.com\/.*$/
@@ -36,6 +36,10 @@ const cssText = `
 .Question-mainColumn {
     width: 100% !important;
     transition: width 250ms ease !important;
+}
+
+.Pc-feedAd-container {
+    display: none !important;
 }
 `
 
