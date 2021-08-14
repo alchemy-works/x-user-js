@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name                youtube_download
 // @description         youtube_download
-// @version             0.0.6
+// @version             0.0.7
 // @namespace           https://github.com/alchemy-works
 // @author              Alchemy Works
 // @include             /^https:\/\/(www)\.youtube\.com\/.*$/
@@ -14,7 +14,10 @@
 
 ;(function () {
     'use strict'
-    const { injectGlobal } = globalThis['emotion']
+    if (!window['emotion']) {
+        return
+    }
+    const { injectGlobal } = window['emotion']
 
     injectGlobal`
       .video-download-link {
