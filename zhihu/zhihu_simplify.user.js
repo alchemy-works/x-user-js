@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name                zhihu_simplify
 // @description         zhihu_simplify
-// @version             0.0.5
+// @version             0.0.6
 // @namespace           https://github.com/alchemy-works
 // @author              Alchemy Works
 // @include             /^https:\/\/(www)\.zhihu\.com\/.*$/
@@ -11,39 +11,36 @@
 // @grant               none
 // ==/UserScript==
 
-function injectCSS(cssText) {
+;(function () {
+    'use strict'
+
+    const cssText = `
+
+      .GlobalSideBar {
+        display: none !important;
+      }
+
+      .Topstory-mainColumn {
+        width: 100% !important;
+        margin-right: 0 !important;
+        transition: width 250ms ease !important;
+      }
+
+      .Question-sideColumn {
+        display: none !important;
+      }
+
+      .Question-mainColumn {
+        width: 100% !important;
+        transition: width 250ms ease !important;
+      }
+
+      .Pc-feedAd-container {
+        display: none !important;
+      }
+    `
+
     const style = document.createElement('style')
     style.innerHTML = cssText;
     document.head.appendChild(style);
-}
-
-const cssText = `
-
-.GlobalSideBar {
-    display: none !important;
-}
-
-.Topstory-mainColumn {
-    width: 100% !important;
-    margin-right: 0 !important;
-    transition: width 250ms ease !important;
-}
-
-.Question-sideColumn {
-    display: none !important;
-}
-
-.Question-mainColumn {
-    width: 100% !important;
-    transition: width 250ms ease !important;
-}
-
-.Pc-feedAd-container {
-    display: none !important;
-}
-`
-
-;(function () {
-    'use strict'
-    injectCSS(cssText)
 })();
