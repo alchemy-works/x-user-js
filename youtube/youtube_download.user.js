@@ -26,6 +26,10 @@
             return
         }
 
+        if (!location.href.includes('/watch')) {
+            return
+        }
+
         const container = document.querySelector('#info-text')
         if (!container) {
             return

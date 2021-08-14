@@ -25,6 +25,11 @@
         if (targetElement) {
             return
         }
+
+        if (!location.href.includes('/video')) {
+            return
+        }
+
         const container = document.querySelector('.rigth-btn')
         const peerElement = document.querySelector('.rigth-btn :nth-child(2)')
 
