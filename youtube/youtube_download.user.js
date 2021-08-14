@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name                youtube_download
 // @description         youtube_download
-// @version             0.0.2
+// @version             0.0.3
 // @namespace           https://github.com/alchemy-works
 // @author              Alchemy Works
 // @include             /^https:\/\/(www)\.youtube\.com\/.*$/
@@ -13,12 +13,18 @@
 
 ;(function () {
     'use strict'
-    const infoText = document.querySelector('#info-text')
-    if (!infoText) {
-        return
-    }
 
-    const cssText = `
+    function tryAddDownloadLink(count) {
+        if (!count) {
+            return
+        }
+        const infoText = document.querySelector('#info-text')
+        if (!infoText) {
+            setTimeout(() => tryAddDownloadLink(count - 1), 3000)
+            return
+        }
+
+        const cssText = `
       .video-download-link {
         font-size: 14px;
         text-decoration: none;
@@ -31,15 +37,18 @@
       }
     `
 
-    const style = document.createElement('style')
-    style.innerHTML = cssText;
-    document.head.appendChild(style);
+        const style = document.createElement('style')
+        style.innerHTML = cssText;
+        document.head.appendChild(style);
 
-    const link = document.createElement('a')
-    link.href = location.href.replace('youtube.com', 'youtubepp.com')
-    link.innerText = '下载'
-    link.target = '__blank'
-    link.classList.add('video-download-link')
+        const link = document.createElement('a')
+        link.href = location.href.replace('youtube.com', 'youtubepp.com')
+        link.innerText = '下载'
+        link.target = '__blank'
+        link.classList.add('video-download-link')
 
-    infoText.appendChild(link)
+        infoText.appendChild(link)
+    }
+
+    tryAddDownloadLink(9)
 })();
