@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name                bilibili_download
 // @description         bilibili_download
-// @version             0.0.1
+// @version             0.0.2
 // @namespace           https://github.com/alchemy-works
 // @author              Alchemy Works
 // @include             /^https:\/\/(www)\.bilibili\.com\/.*$/
@@ -14,21 +14,28 @@
 ;(function () {
     'use strict'
 
-    function tryAddDownloadLink(count) {
+    function checkAndAddDownloadLink(count) {
         if (!count) {
+            return
+        } else {
+            setTimeout(() => checkAndAddDownloadLink(count - 1), 3000)
+        }
+
+        const targetElement = document.querySelector('.video-download-link')
+        if (targetElement) {
             return
         }
         const container = document.querySelector('.rigth-btn')
         const peerElement = document.querySelector('.rigth-btn :nth-child(2)')
 
         if (!container) {
-            setTimeout(() => tryAddDownloadLink(count - 1), 3000)
             return
         }
 
         const link = document.createElement('a')
         link.innerText = '下载'
         link.classList.add('appeal-text')
+        link.classList.add('video-download-link')
         link.href = 'https://www.videotosave.com/bilibili-video-downloader/'
         link.target = '__blank'
         link.addEventListener('click', () => {
@@ -46,5 +53,7 @@
         container.insertBefore(link, peerElement)
     }
 
-    tryAddDownloadLink(9)
+    setTimeout(() => {
+        checkAndAddDownloadLink(9)
+    }, 3000)
 })();

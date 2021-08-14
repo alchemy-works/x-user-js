@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name                youtube_download
 // @description         youtube_download
-// @version             0.0.3
+// @version             0.0.4
 // @namespace           https://github.com/alchemy-works
 // @author              Alchemy Works
 // @include             /^https:\/\/(www)\.youtube\.com\/.*$/
@@ -14,13 +14,20 @@
 ;(function () {
     'use strict'
 
-    function tryAddDownloadLink(count) {
+    function checkAndAddDownloadLink(count) {
         if (!count) {
             return
+        } else {
+            setTimeout(() => checkAndAddDownloadLink(count - 1), 3000)
         }
-        const infoText = document.querySelector('#info-text')
-        if (!infoText) {
-            setTimeout(() => tryAddDownloadLink(count - 1), 3000)
+
+        const targetElement = document.querySelector('.video-download-link')
+        if (targetElement) {
+            return
+        }
+
+        const container = document.querySelector('#info-text')
+        if (!container) {
             return
         }
 
@@ -47,8 +54,10 @@
         link.target = '__blank'
         link.classList.add('video-download-link')
 
-        infoText.appendChild(link)
+        container.appendChild(link)
     }
 
-    tryAddDownloadLink(9)
+    setTimeout(() => {
+        checkAndAddDownloadLink(9)
+    }, 3000)
 })();
