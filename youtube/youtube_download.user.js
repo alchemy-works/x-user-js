@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name                youtube_download
 // @description         youtube_download
-// @version             0.0.7
+// @version             0.0.8
 // @namespace           https://github.com/alchemy-works
 // @author              Alchemy Works
 // @include             /^https:\/\/(www)\.youtube\.com\/.*$/
@@ -14,10 +14,11 @@
 
 ;(function () {
     'use strict'
-    if (!window['emotion']) {
+
+    if (!window.emotion) {
         return
     }
-    const { injectGlobal } = window['emotion']
+    const { injectGlobal } = window.emotion
 
     injectGlobal`
       .video-download-link {
@@ -25,12 +26,21 @@
         text-decoration: none;
         color: #606060;
         margin-left: 8px;
-      }
 
-      .video-download-link:hover {
-        color: #404040;
+        &:hover {
+          color: #404040;
+        }
       }
     `
+
+    function createDownloadLink() {
+        const link = document.createElement('a')
+        link.href = location.href.replace('youtube.com', 'youtubepp.com')
+        link.innerText = '下载'
+        link.target = '__blank'
+        link.classList.add('video-download-link')
+        return link
+    }
 
     function checkAndAddDownloadLink(count) {
         if (!count) {
@@ -53,12 +63,7 @@
             return
         }
 
-        const link = document.createElement('a')
-        link.href = location.href.replace('youtube.com', 'youtubepp.com')
-        link.innerText = '下载'
-        link.target = '__blank'
-        link.classList.add('video-download-link')
-
+        const link = createDownloadLink()
         container.appendChild(link)
     }
 

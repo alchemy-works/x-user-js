@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name                bilibili_download
 // @description         bilibili_download
-// @version             0.0.3
+// @version             0.0.4
 // @namespace           https://github.com/alchemy-works
 // @author              Alchemy Works
 // @include             /^https:\/\/(www)\.bilibili\.com\/.*$/
@@ -13,6 +13,27 @@
 
 ;(function () {
     'use strict'
+
+    function createDownloadLink() {
+        const link = document.createElement('a')
+        link.innerText = '下载'
+        link.classList.add('appeal-text')
+        link.classList.add('video-download-link')
+        link.href = 'https://www.videotosave.com/bilibili-video-downloader/'
+        link.target = '__blank'
+        link.addEventListener('click', () => {
+            const input = document.createElement('input')
+            input.setAttribute('readonly', 'readonly')
+            input.setAttribute('value', location.href)
+            document.body.appendChild(input)
+            input.select()
+            if (document.execCommand('copy')) {
+                document.execCommand('copy')
+            }
+            document.body.removeChild(input);
+        })
+        return link
+    }
 
     function checkAndAddDownloadLink(count) {
         if (!count) {
@@ -37,24 +58,7 @@
             return
         }
 
-        const link = document.createElement('a')
-        link.innerText = '下载'
-        link.classList.add('appeal-text')
-        link.classList.add('video-download-link')
-        link.href = 'https://www.videotosave.com/bilibili-video-downloader/'
-        link.target = '__blank'
-        link.addEventListener('click', () => {
-            const input = document.createElement('input')
-            input.setAttribute('readonly', 'readonly')
-            input.setAttribute('value', location.href)
-            document.body.appendChild(input)
-            input.select()
-            if (document.execCommand('copy')) {
-                document.execCommand('copy')
-            }
-            document.body.removeChild(input);
-        })
-
+        const link = createDownloadLink()
         container.insertBefore(link, peerElement)
     }
 

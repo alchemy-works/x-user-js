@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name                zhihu_simplify
 // @description         zhihu_simplify
-// @version             0.0.8
+// @version             0.0.9
 // @namespace           https://github.com/alchemy-works
 // @author              Alchemy Works
 // @include             /^https:\/\/(www)\.zhihu\.com\/.*$/
@@ -14,10 +14,10 @@
 
 ;(function () {
     'use strict'
-    if (!window['emotion']) {
+    if (!window.emotion) {
         return
     }
-    const { injectGlobal } = window['emotion']
+    const { injectGlobal } = window.emotion
 
     injectGlobal`
 
