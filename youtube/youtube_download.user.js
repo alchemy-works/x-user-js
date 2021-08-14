@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name                youtube_download
 // @description         youtube_download
-// @version             0.0.4
+// @version             0.0.5
 // @namespace           https://github.com/alchemy-works
 // @author              Alchemy Works
 // @include             /^https:\/\/(www)\.youtube\.com\/.*$/
