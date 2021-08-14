@@ -1,10 +1,11 @@
 // ==UserScript==
 // @name                zhihu_simplify
 // @description         zhihu_simplify
-// @version             0.0.6
+// @version             0.0.7
 // @namespace           https://github.com/alchemy-works
 // @author              Alchemy Works
 // @include             /^https:\/\/(www)\.zhihu\.com\/.*$/
+// @require             https://unpkg.com/@emotion/css@11.1.3/dist/emotion-css.umd.min.js
 // @icon                https://www.google.com/s2/favicons?domain=zhihu.com
 // @license             MIT
 // @run-at              document-end
@@ -13,8 +14,9 @@
 
 ;(function () {
     'use strict'
+    const { injectGlobal } = globalThis['emotion']
 
-    const cssText = `
+    injectGlobal`
 
       .GlobalSideBar {
         display: none !important;
@@ -39,8 +41,4 @@
         display: none !important;
       }
     `
-
-    const style = document.createElement('style')
-    style.innerHTML = cssText;
-    document.head.appendChild(style);
 })();

@@ -1,10 +1,11 @@
 // ==UserScript==
 // @name                youtube_download
 // @description         youtube_download
-// @version             0.0.5
+// @version             0.0.6
 // @namespace           https://github.com/alchemy-works
 // @author              Alchemy Works
 // @include             /^https:\/\/(www)\.youtube\.com\/.*$/
+// @require             https://unpkg.com/@emotion/css@11.1.3/dist/emotion-css.umd.min.js
 // @icon                https://www.google.com/s2/favicons?domain=youtube.com
 // @license             MIT
 // @run-at              document-end
@@ -13,6 +14,20 @@
 
 ;(function () {
     'use strict'
+    const { injectGlobal } = globalThis['emotion']
+
+    injectGlobal`
+      .video-download-link {
+        font-size: 14px;
+        text-decoration: none;
+        color: #606060;
+        margin-left: 8px;
+      }
+
+      .video-download-link:hover {
+        color: #404040;
+      }
+    `
 
     function checkAndAddDownloadLink(count) {
         if (!count) {
@@ -34,23 +49,6 @@
         if (!container) {
             return
         }
-
-        const cssText = `
-      .video-download-link {
-        font-size: 14px;
-        text-decoration: none;
-        color: #606060;
-        margin-left: 8px;
-      }
-
-      .video-download-link:hover {
-        color: #404040;
-      }
-    `
-
-        const style = document.createElement('style')
-        style.innerHTML = cssText;
-        document.head.appendChild(style);
 
         const link = document.createElement('a')
         link.href = location.href.replace('youtube.com', 'youtubepp.com')
