@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name                zhihu_simplify
-// @description         zhihu simplify
+// @description         zhihu_simplify
 // @version             0.0.5
 // @namespace           https://github.com/alchemy-works
 // @author              Alchemy Works
