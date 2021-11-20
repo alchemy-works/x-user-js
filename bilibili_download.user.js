@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name                bilibili_download
 // @description         bilibili_download
-// @version             0.1.1
+// @version             0.1.2
 // @namespace           https://github.com/alchemy-works
 // @author              Alchemy Works
 // @include             /^https:\/\/(www)\.bilibili\.com\/.*$/
@@ -22,12 +22,13 @@
     injectGlobal`
 
       .international-header {
+        width: unset !important;
         min-width: 800px !important;
       }
 
       .v-wrap {
+        width: unset !important;
         min-width: 800px !important;
-        padding: 0 !important;
       }
 
       .l-con {
