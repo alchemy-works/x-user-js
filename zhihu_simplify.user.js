@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name                zhihu_simplify
 // @description         zhihu_simplify
-// @version             0.1.0
+// @version             0.1.1
 // @namespace           https://github.com/alchemy-works
 // @author              Alchemy Works
 // @include             /^https:\/\/(www)\.zhihu\.com\/.*$/
@@ -42,6 +42,15 @@
 
       .Pc-feedAd-container {
         display: none !important;
+      }
+      
+      .Question-main {
+        width: unset !important;
+        max-width: 1000px;
+      }
+      
+      .QuestionHeader {
+        min-width: unset !important;
       }
     `
 })();
