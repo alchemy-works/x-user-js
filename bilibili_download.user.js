@@ -1,10 +1,11 @@
 // ==UserScript==
 // @name                bilibili_download
 // @description         bilibili_download
-// @version             0.1.0
+// @version             0.1.1
 // @namespace           https://github.com/alchemy-works
 // @author              Alchemy Works
 // @include             /^https:\/\/(www)\.bilibili\.com\/.*$/
+// @require             https://unpkg.com/@emotion/css@11.1.3/dist/emotion-css.umd.min.js
 // @icon                https://www.google.com/s2/favicons?domain=bilibili.com
 // @license             MIT
 // @run-at              document-end
@@ -13,6 +14,30 @@
 
 ;(function () {
     'use strict'
+    if (!window['emotion']) {
+        return
+    }
+    const { injectGlobal } = window['emotion']
+
+    injectGlobal`
+
+      .international-header {
+        min-width: 800px !important;
+      }
+
+      .v-wrap {
+        min-width: 800px !important;
+        padding: 0 !important;
+      }
+
+      .l-con {
+        width: unset !important;
+      }
+
+      .r-con {
+        display: none !important;
+      }
+    `
 
     function createDownloadLink() {
         const link = document.createElement('a')
