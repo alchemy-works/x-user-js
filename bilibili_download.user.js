@@ -21,23 +21,6 @@
 
     injectGlobal`
 
-      .international-header {
-        width: unset !important;
-        min-width: 800px !important;
-      }
-
-      .v-wrap {
-        width: unset !important;
-        min-width: 800px !important;
-      }
-
-      .l-con {
-        width: unset !important;
-      }
-
-      .r-con {
-        display: none !important;
-      }
     `
 
     function createDownloadLink() {
