@@ -14,10 +14,10 @@
 
 ;(function () {
     'use strict'
-    if (!window.emotion) {
+    if (!window['emotion']) {
         return
     }
-    const { injectGlobal } = window.emotion
+    const { injectGlobal } = window['emotion']
 
     injectGlobal`
 
