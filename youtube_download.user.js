@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name                youtube_download
 // @description         youtube_download
-// @version             0.1.0
+// @version             0.1.1
 // @namespace           https://github.com/alchemy-works
 // @author              Alchemy Works
 // @include             /^https:\/\/(www)\.youtube\.com\/.*$/
@@ -35,10 +35,16 @@
 
     function createDownloadLink() {
         const link = document.createElement('a')
-        link.href = location.href.replace('youtube.com', 'youtubepp.com')
         link.innerText = '下载'
-        link.target = '__blank'
         link.classList.add('video-download-link')
+        link.href = '#'
+        link.addEventListener('click', (ev) => {
+            ev.preventDefault()
+            const params = new URLSearchParams()
+            params.append('url', location.href)
+            params.append('proxy', 'true')
+            window.open('https://gk41.jianzhao.org/api/youtube-dl?' + params.toString())
+        })
         return link
     }
 
