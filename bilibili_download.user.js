@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name                bilibili_download
 // @description         bilibili_download
-// @version             0.1.4
+// @version             0.1.5
 // @namespace           https://github.com/alchemy-works
 // @author              Alchemy Works
 // @include             /^https:\/\/(www)\.bilibili\.com\/.*$/
@@ -28,9 +28,10 @@
         link.innerText = '下载'
         link.classList.add('appeal-text')
         link.classList.add('video-download-link')
-        link.href = 'https://www.videotosave.com/bilibili-video-downloader/'
+        link.href = '#'
         link.target = '__blank'
-        link.addEventListener('click', () => {
+        link.addEventListener('click', (ev) => {
+            ev.preventDefault()
             const params = new URLSearchParams()
             params.append('url', location.href)
             window.open('https://gk41.jianzhao.org/api/youtube-dl?' + params.toString())
