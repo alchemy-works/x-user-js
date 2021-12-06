@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name                bilibili_download
 // @description         bilibili_download
-// @version             0.1.3
+// @version             0.1.4
 // @namespace           https://github.com/alchemy-works
 // @author              Alchemy Works
 // @include             /^https:\/\/(www)\.bilibili\.com\/.*$/
@@ -31,15 +31,9 @@
         link.href = 'https://www.videotosave.com/bilibili-video-downloader/'
         link.target = '__blank'
         link.addEventListener('click', () => {
-            const input = document.createElement('input')
-            input.setAttribute('readonly', 'readonly')
-            input.setAttribute('value', location.href)
-            document.body.appendChild(input)
-            input.select()
-            if (document.execCommand('copy')) {
-                document.execCommand('copy')
-            }
-            document.body.removeChild(input);
+            const params = new URLSearchParams()
+            params.append('url', location.href)
+            window.open('https://gk41.jianzhao.org/api/youtube-dl?' + params.toString())
         })
         return link
     }
