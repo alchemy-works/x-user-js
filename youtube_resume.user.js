@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name                youtube_resume
 // @description         youtube_resume
-// @version             0.0.1
+// @version             0.0.2
 // @namespace           https://github.com/alchemy-works
 // @author              Alchemy Works
 // @include             /^https:\/\/(www)\.youtube\.com\/.*$/
