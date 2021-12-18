@@ -14,4 +14,20 @@
 ;(function () {
     'use strict'
 
+    function resume() {
+        const resumeTextNode = document.querySelector('')
+        if (!resumeTextNode) {
+            return
+        }
+        const resumeConfirmButton = document.querySelector('')
+        if (!resumeConfirmButton) {
+            return
+        }
+        console.info(`[${new Date().toISOString()}]`, 'Resume playback')
+        resumeConfirmButton.click()
+    }
+
+    setInterval(() => {
+        resume()
+    }, 3000)
 })();
