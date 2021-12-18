@@ -1,11 +1,10 @@
 // ==UserScript==
 // @name                youtube_resume
 // @description         youtube_resume
-// @version             0.0.2
+// @version             0.0.3
 // @namespace           https://github.com/alchemy-works
 // @author              Alchemy Works
 // @include             /^https:\/\/(www)\.youtube\.com\/.*$/
-// @require             https://raw.githubusercontent.com/lawfx/YoutubeNonStop/v0.9.1/autoconfirm.js
 // @icon                https://www.google.com/s2/favicons?domain=youtube.com
 // @license             MIT
 // @run-at              document-end
@@ -14,8 +13,22 @@
 
 ;(function () {
     'use strict'
-    console.debug(
-        new Date().toISOString(),
-        'https://raw.githubusercontent.com/lawfx/YoutubeNonStop/v0.9.1/autoconfirm.js',
-    )
+    const $ = document.querySelector.bind(document)
+
+    function resume() {
+        const resumeTextNode = $('ytd-popup-container yt-formatted-string.line-text')
+        if (!resumeTextNode || resumeTextNode.textContent !== '视频已暂停。是否继续观看？') {
+            return
+        }
+        const resumeConfirmButton = $('ytd-popup-container tp-yt-paper-button')
+        if (!resumeConfirmButton) {
+            return
+        }
+        resumeConfirmButton.click()
+        console.info(`[${new Date().toISOString()}]`, 'Resume playback')
+    }
+
+    setInterval(() => {
+        resume()
+    }, 3000)
 })();
